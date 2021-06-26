@@ -1,2 +1,3 @@
 # miaoer-gitdown
 一些博文只能放能Github下载的都在这里找得到，有一部分有高速盘也会放这里
+https://github.com/miaoermua/miaoer-gitdown/blob/main/meme/%E6%BB%91%E7%A8%BD%E9%9B%AA%E7%90%83.gif?raw=true
