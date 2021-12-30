@@ -1,9 +1,6 @@
 # miaoer-gitdown
-一些博文只能放能Github下载的都在这里找得到，有一部分有高速盘也会放这里,图床好整理方便博文快速上传
-博客里面有很多图片都是上传到有CDN的图床了部分放这里了
+博客中的文件，图片；使用CDN进行加速。 属于:(https://cdn.miaoer.xyz)
 
-博客自主cdn可能替换整个仓库，源链不可用
+> 使用者请遵守 MIT 协议，并标记作者主页。
 
-blog: https://www.miaoer.xyz
-
-![Image text](https://raw.githubusercontent.com/miaoermua/miaoer-gitdown/main/meme/%E6%BB%91%E7%A8%BD%E9%9B%AA%E7%90%83.gif)
+个人主页: https://www.miaoer.xyz
