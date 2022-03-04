@@ -5,8 +5,7 @@
     "name":"云游君",
     "blog":"云游君的小站",
     "desc":"All at sea.",
-    "color": "#0078e7",
-    "email": "me@yunyoujun.cn"
+    "color": "#0078e7"
   }
   ,
   {
@@ -64,17 +63,8 @@
   }
   ,
   {
-  "url":"https://ucany.net",
-  "avatar":"https://ucany.net/img/avatar-a.jpg",
-  "name":"Langford",
-  "blog":"Langford's blog",
-  "desc":"在努力之前就放弃，那就是懒惰",
-  "color": "#6a81b5"
-  }
-  ,
-  {
-  "url":"https://www.meowrain.cn",
-  "avatar":"https://gitee.com/lr787/img/raw/master/img/QQ%E5%9B%BE%E7%89%8720200823182716.jpg",
+  "url":"https://meowrain.cn",
+  "avatar":"https://meowrain.cn/img/avater.jpg",
   "name":"猫狗鼠鱼",
   "blog":"猫狗鼠鱼的储物间",
   "desc":"像东风吹散千树繁花一样，又吹得烟火纷纷，乱落如雨",
@@ -110,11 +100,11 @@
   ,
   {
   "url":"https://champhoon.xyz",
-  "avatar":"https://champhoon.xyz/wp-content/api/favicon/favicon-main.png",
+  "avatar":"https://api.champhoon.xyz/favicon/favicon-main.png",
   "name":"澄沨",
   "blog":"澄沨的漫游茶记",
   "desc":"Stay hungry, Stay foolish.",
-  "color": "#FFF0DF"
+  "color": "#DF9DA3"
   }
   ,
   {
@@ -141,8 +131,7 @@
   "name":"Davinci",
   "blog":"Davinci的红茶馆",
   "desc":"You are all stardust.",
-  "color": "#A6A5B7",
-  "email": "me@davincievans.top"
+  "color": "#A6A5B7"
   }
   ,
   {
@@ -183,7 +172,7 @@
   ,
   {
   "url":"https://loliloli.moe",
-  "avatar":"https://img.loliloli.moe/images/2021/01/11/avatar.jpg?_ga=2.152584304.858877010.1635595080-1417891158.1635595080",
+  "avatar":"https://img.loliloli.moe/images/2021/01/11/avatar.jpg",
   "name":"萌！萝莉",
   "blog":"萌！萝莉",
   "desc":"一个普通的小博客哦~",
@@ -205,8 +194,7 @@
   "name":"双皮酸奶",
   "blog":"双皮酸奶の酸奶盒",
   "desc":"只要思想不滑坡，方法总比困难多",
-  "color":"#3E638D",
-  "email":"1769859242@qq.com"
+  "color":"#3E638D"
   }
   ,
   {
@@ -219,23 +207,12 @@
   }
   ,
   {
-  "url":"https://www.57blog.cn",
-  "avatar":"https://i.loli.net/2021/11/29/zVTLkOfih6Uu7I3.png",
-  "name":"无心",
-  "blog":"无心博客",
-  "desc":"生命不等于是呼吸，生命是活动",
-  "color":"#89ECFF",
-  "email":"qingdiwlkj@163.com"
-  }
-  ,
-  {
   "url":"https://www.feizhuqwq.com",
   "avatar":"https://cdn.jsdelivr.net/gh/feizhuqwq/loveyou@main/faviconHD.jpg",
   "name":"肥猪qwq",
   "blog":"肥猪's Blog",
   "desc":"一定是最可爱的猪猪！",
-  "color":"#2A762B",
-  "email":"me@feizhuqwq.com"
+  "color":"#2A762B"
   }
   ,
   {
@@ -245,5 +222,41 @@
   "blog":"LiZiWu",
   "desc":"李自伍的个人技术博客 & 期待与你相逢",
   "color":"#5E76A2"
+  }
+  ,
+  {
+    "url":"https://blog.beixibaobao.com",
+    "avatar":"https://api.beixibaobao.com/img/blog/logo.jpg",
+    "name":"北熙宝宝",
+    "blog":"北熙宝宝",
+    "desc":"李自伍的个人技术博客 & 期待与你相逢",
+    "color":"#AAD5F8"
+  }
+  ,
+  {
+    "url":"https://paul.ren",
+    "avatar":"https://paul.ren/static/img/avatar.jpg",
+    "name":"奇趣保罗",
+    "blog":"奇趣保罗",
+    "desc":"Still single, still waiting...",
+    "color":"#554359"
+  }
+  ,
+  {
+    "url":"https://yczheng.top",
+    "avatar":"https://s1.328888.xyz/2022/02/04/yvYI2.png",
+    "name":"Yunc",
+    "blog":"Yunc小站",
+    "desc":"一个终身学习者的自留地",
+    "color":"blue"
+  }
+  ,
+  {
+    "url": "https://blog.cworld.top",
+    "avatar": "https://gravatar.loli.net/avatar/1ffe42aa45a6b1444a786b1f32dfa8aa?s=400",
+    "name": "CWorld's",
+    "blog": "CWorld's Blog",
+    "desc": "求知若愚，虚怀若谷",
+    "color": "#267DBA"
   }
 ]
