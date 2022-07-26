@@ -243,10 +243,19 @@
   ,
   {
     "url": "https://www.19ta.cc",
-    "avatar": "https://cdn.miaoer.xyz/friends/www.19ta.cc.webp",
+    "avatar": "https://cdn.miaoer.xyz/friends/www.19ta.cc.png",
     "name": "卡卡",
     "blog": "卡卡的鼓捣日记",
     "desc": ". 分 享 热 爱 .",
     "color": "#000000"
+  }
+  ,
+  {
+    "url": "https://www.plsshenyun.top",
+    "avatar": "https://www.plsshenyun.top/ico/ico.png",
+    "name": "望夜菌",
+    "blog": "望夜菌的小窝",
+    "desc": "我来啦~要一起加油哦~",
+    "color": "#A0D9F7"
   }
 ]
