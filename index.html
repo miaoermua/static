@@ -1,275 +1,545 @@
 <!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CDN - 喵二の小博客</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" type="text/css" href="style.css">
-<link rel="icon" href="/favicon.ico" type="image/x-icon">
-<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-<script src="scrpt.js"></script>
-</head>
-
+<html lang="zh-CN" data-page-node-id="EYfuZJx175rDyF9jidqg5T">
+<head data-page-node-id="8htY6t1EXYXemaXvUHbjC8">
+<meta charset="utf-8" data-page-node-id="oqsHXzJJ6mMMot06k8fKd8">
+<meta name="viewport" content="width=device-width, initial-scale=1" data-page-node-id="eGExKlWHhsixEWtD0HWOIe">
+<title>CDN 状态 - 喵二の小博客</title>
+<link rel="icon" href="/favicon.ico" type="image/x-icon" data-page-node-id="5oreLPrrbNyXPcLeU9Of2p">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" data-page-node-id="dAKvZ2UkcBofgj7jemhAkQ">
 <style>
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body{
-  background: #ecf2f8;
+:root {
+  --accent: #1abc9c;
+  --accent-dark: #0e8c6f;
+}
+
+html, body { height: 100%; }
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: linear-gradient(135deg, #e8eef5 0%, #dfe8f1 55%, #d5e2ec 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
-.container{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 1000px;
-  height: 600px;
+.container {
+  position: relative;
+  width: min(1000px, 94vw);
+  height: min(600px, 80vh);
   background: #f5f5f5;
-  box-shadow: 0 30px 50px #dbdbdb;
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(70, 90, 110, .28);
+  overflow: hidden;
 }
 
-.container .slide .item{
-  width: 200px;
-  height: 300px;
+/* ---------- 轮播卡片 ---------- */
+
+.container .slide .item {
   position: absolute;
   top: 50%;
   transform: translate(0, -50%);
-  border-radius: 10px;
-  box-shadow: 0 30px 50px #505050;
+  width: 20%;
+  height: 50%;
   background-position: 50% 50%;
   background-size: cover;
-  display: inline-block;
-  transition: 0.5s;
-  border-radius: 10px;
+  border-radius: 14px;
+  box-shadow: 0 18px 36px rgba(40, 50, 60, .35);
+  transition: .5s;
+  overflow: hidden;
 }
 
+/* 前两张铺满作为当前主图 */
 .slide .item:nth-child(1),
-.slide .item:nth-child(2){
+.slide .item:nth-child(2) {
   top: 0;
   left: 0;
   transform: translate(0, 0);
-  border-radius: 0;
   width: 100%;
   height: 100%;
-  border-radius: 10px;
+  border-radius: 20px;
 }
 
-.slide .item:nth-child(3){
-  left: 50%;
-}
-
-.slide .item:nth-child(4){
-  left: calc(50% + 220px);
-}
-
-.slide .item:nth-child(5){
-  left: calc(50% + 440px);
-}
+.slide .item:nth-child(3) { left: 50%; }
+.slide .item:nth-child(4) { left: calc(50% + 22%); }
+.slide .item:nth-child(5) { left: calc(50% + 44%); }
 
 /* here n = 0, 1, 2, 3,... */
-
-.slide .item:nth-child(n + 6){
-  left: calc(50% + 660px);
+.slide .item:nth-child(n + 6) {
+  left: calc(50% + 66%);
   opacity: 0;
 }
 
-.item .content{
+/* 主图上的渐变遮罩，保证文字可读 */
+.slide .item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .18) 45%, rgba(0, 0, 0, 0) 72%);
+  opacity: 0;
+  transition: opacity .5s;
+  pointer-events: none;
+}
+
+.slide .item:nth-child(2)::after { opacity: 1; }
+
+/* ---------- 文字内容 ---------- */
+
+.item .content {
   position: absolute;
   top: 50%;
-  left: 100px;
-  width: 300px;
+  left: 6%;
+  right: 6%;
+  max-width: 420px;
   text-align: left;
-  color: #eee;
+  color: #fff;
   transform: translate(0, -50%);
-  font-family: system-ui;
+  z-index: 2;
   display: none;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .45);
 }
 
-.slide .item:nth-child(2) .content{
-  display: block;
-}
+.slide .item:nth-child(2) .content { display: block; }
 
-.content .name{
-  font-size: 40px;
-  text-transform: uppercase;
+.content .name {
+  font-size: clamp(26px, 4vw, 42px);
   font-weight: bold;
+  letter-spacing: 2px;
   opacity: 0;
   animation: animate 1s ease-in-out 1 forwards;
-
 }
 
-.content .des{
+.content .des {
   margin-top: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  font-size: 15px;
   opacity: 0;
-  animation: animate 1s ease-in-out 0.3s 1 forwards;
-
-}
-
-.content button{
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  opacity: 0;
-  animation: animate 1s ease-in-out 0.6s 1 forwards;
-
+  animation: animate 1s ease-in-out .3s 1 forwards;
 }
 
 @keyframes animate {
-  from{
+  from {
     opacity: 0;
-    transform: translate(0, 100px);
-    filter: blur(33px);
+    transform: translate(0, 60px);
+    filter: blur(12px);
   }
-
-  to{
+  to {
     opacity: 1;
     transform: translate(0);
     filter: blur(0);
   }
-
-}
-
-.button{
-  width: 100%;
-  text-align: center;
-  position: absolute;
-  bottom: 20px;
-}
-
-
-
-.button button{
-  width: 30px;
-  height: 30px;
-  border-radius: 20px;
-  border: none;
-  cursor: pointer;
-  margin: 0 5px;
-  border: 1px solid #1abc9c;
-  transition: 0.3s;
-}
-
-
-
-.button button:hover{
-  background: #ababab;
-  color: #1abc9c;
 }
 
 .btn-see-more {
   display: inline-block;
-  padding: 8px 16px;
-  background-color: #1abc9c; /* 蓝色背景 */
-  color: white;
-  text-decoration: none; /* 去除下划线 */
-  border-radius: 4px;
-  transition: background-color 0.2s ease-in-out;
+  padding: 9px 20px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: 999px;
+  opacity: 0;
+  animation: animate 1s ease-in-out .6s 1 forwards;
+  transition: background .25s;
 }
 
-.btn-see-more:hover {
-  background-color: #00755e; /* 鼠标悬停时的深蓝色背景 */
+.btn-see-more:hover { background: var(--accent-dark); }
+
+/* ---------- CDN 状态徽章 ---------- */
+
+.status-row {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 10;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 8px 15px;
+  background: rgba(15, 22, 28, .55);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: .4px;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+}
+
+.status .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #f1c40f; /* 检测中 */
+  box-shadow: 0 0 6px rgba(241, 196, 15, .9);
+  transition: background .3s, box-shadow .3s;
+}
+
+.status .dot.ok   { background: #2ecc71; box-shadow: 0 0 6px rgba(46, 204, 113, .9); }
+.status .dot.warn { background: #f39c12; box-shadow: 0 0 6px rgba(243, 156, 18, .9); }
+.status .dot.err  { background: #e74c3c; box-shadow: 0 0 6px rgba(231, 76, 60, .9); }
+
+/* ---------- 紧急联系气泡 ---------- */
+
+.contact { position: relative; }
+
+.contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 15px;
+  background: rgba(15, 22, 28, .55);
+  color: #fff;
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: .4px;
+  border: none;
+  border-radius: 999px;
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  transition: background .25s;
+}
+
+.contact-btn:hover { background: rgba(15, 22, 28, .78); }
+.contact-btn svg { width: 14px; height: 14px; }
+
+.contact-pop {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  width: 300px;
+  padding: 16px;
+  background: rgba(15, 22, 28, .85);
+  color: #fff;
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, .35);
+  opacity: 0;
+  transform: translateY(-6px);
+  pointer-events: none;
+  transition: opacity .25s, transform .25s;
+}
+
+.contact-pop.open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.contact-pop h3 {
+  font-size: 14px;
+  margin-bottom: 6px;
+}
+
+.contact-pop p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, .72);
+  line-height: 1.6;
+}
+
+.contact-pop a {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 8px;
+  padding: 9px 12px;
+  background: rgba(255, 255, 255, .1);
+  color: #fff;
+  font-size: 13px;
+  text-decoration: none;
+  border-radius: 9px;
+  transition: background .2s;
+  word-break: break-all;
+}
+
+.contact-pop a:hover { background: rgba(255, 255, 255, .22); }
+.contact-pop a svg { width: 15px; height: 15px; flex-shrink: 0; }
+.contact-pop a .tag { margin-left: auto; padding-left: 8px; font-size: 11px; color: rgba(255, 255, 255, .55); white-space: nowrap; }
+
+/* ---------- 前进 / 后退按钮 ---------- */
+
+.nav {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  gap: 12px;
+}
+
+.nav button {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .55);
+  background: rgba(255, 255, 255, .22);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .25s, transform .25s;
+}
+
+.nav button:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: scale(1.08);
+}
+
+.nav svg { width: 18px; height: 18px; }
+
+.credit {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  z-index: 10;
+  font-size: 12px;
+  color: rgba(255, 255, 255, .9);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, .45);
+}
+
+.credit a { color: inherit; text-decoration: none; }
+.credit a:hover { text-decoration: underline; }
+
+/* ---------- 移动端 ---------- */
+
+@media (max-width: 760px) {
+  body { overflow: auto; }
+
+  .container {
+    width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+  }
+
+  .slide .item {
+    width: 100%;
+    height: 100%;
+    left: 0 !important;
+    border-radius: 0;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .slide .item:nth-child(1),
+  .slide .item:nth-child(2) {
+    opacity: 1;
+    pointer-events: auto;
+    border-radius: 0;
+  }
+
+  .item .content { left: 24px; right: 24px; }
+
+  .nav { bottom: 26px; }
+  .credit { bottom: 36px; }
 }
 </style>
+</head>
 
-<body>
+<body data-page-node-id="VMKfhy6EvbTZL3IYZhOZBM">
 
- <div class="container">
-    <div class="slide">
-      <div class="item" style="background-image: url(/notes/23-10-Nanjing/IMG_20231006_085457.jpg);">
-        <div class="content">
-          <div class="name">NJUST</div>
-          <div class="des">紫霞湖</div>
-          <a href="https://www.miaoer.net" class="btn-see-more">
-            回到博客
-          </a>
-        </div>
-      </div>
-
-      <div class="item" style="background-image: url(/notes/24-02-Wuhan/IMG_20240225_092744.jpg);">
-        <div class="content">
-          <div class="name">WHU</div>
-          <div class="des">9.12 操场 </div>
-          <a href="https://www.miaoer.net" class="btn-see-more">
-            回到博客
-          </a>
-        </div>
-      </div>
-
-      <div class="item" style="background-image: url(/notes/23-10-Nanjing/IMG_20231006_090433.jpg);">
-        <div class="content">
-          <div class="name">NJUST</div>
-          <div class="des">兵器博物馆</div>
-          <a href="https://www.miaoer.net" class="btn-see-more">
-            回到博客
-          </a>
-        </div>
-      </div>
-
-      <div class="item" style="background-image: url(/notes/24-02-Wuhan/IMG_20240225_095550.jpg);">
-        <div class="content">
-          <div class="name">WHU</div>
-          <div class="des">老斋舍 樱花城堡</div>
-          <a href="https://www.miaoer.net" class="btn-see-more">
-            回到博客
-          </a>
-        </div>
-      </div>
-
-      <div class="item" style="background-image: url(/notes/23-10-Nanjing/IMG_20231006_063404.jpg);">
-        <div class="content">
-          <div class="name">NJUST</div>
-          <div class="des">求是路 梧桐树</div>
-          <a href="https://www.miaoer.net" class="btn-see-more">
-            回到博客
-          </a>
-        </div>
-      </div>
-
-      <div class="item" style="background-image: url(/notes/24-02-Wuhan/IMG_20240225_092920.jpg);">
-        <div class="content">
-          <div class="name">WHU</div>
-          <div class="des">行政楼</div>
-          <a href="https://www.miaoer.net" class="btn-see-more">
-            回到博客
-          </a>
-        </div>
-      </div>
+<div class="container" data-page-node-id="PUKIawWAjzocdqqMVbowmh">
+  <div class="status-row" data-page-node-id="sP6tWLQ3GxmAam7jiEd1Ym">
+    <div class="status" data-page-node-id="6ANlOiCSSOpWiMpmHr0JFV">
+      <span class="dot" id="statusDot" data-page-node-id="cVoht1azsUD5eXmgOTGsar"></span>
+      <span id="statusText" data-page-node-id="N0QjXkVVZQSOvSdtf6TmUx">正在检测 CDN 图片加载…</span>
     </div>
 
+    <div class="contact" data-page-node-id="xhvTCP5EDn2Uk7hFbX5tea">
+      <button class="contact-btn" id="contactBtn" aria-expanded="false" data-page-node-id="b2lyJSPy8jKSlMzFL9JA5Z">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="X766hffXSZzhAvZVXPv7UF"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" data-page-node-id="AEvGoQLlDLd4s00NTBLcZT"/><line x1="12" y1="9" x2="12" y2="13" data-page-node-id="BjR7AEhtIsporyzXl9V2lp"/><line x1="12" y1="17" x2="12.01" y2="17" data-page-node-id="XbAPLITxDQpOLfhHJpIvJ6"/></svg>
+        报告问题
+      </button>
 
-
-    <div class="button">
-      <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
-      <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+      <div class="contact-pop" id="contactPop" data-page-node-id="Ft7eq6DjJd2v4Q9EhB8SNn">
+        <h3 data-page-node-id="ME7THpHCUVg5ATFXWdGRHe">博客失联？CDN 还在？</h3>
+        <p data-page-node-id="IQzCTRqyUmL30N2JXI0u6l">博客打不开但本页图片加载正常时，欢迎通过以下方式报告：</p>
+        <a href="mailto:miaoermua@gmail.com?cc=i@miaoer.net&subject=%E5%8D%9A%E5%AE%A2%E5%A4%B1%E8%81%94%E7%B4%A7%E6%80%A5%E6%8A%A5%E5%91%8A" data-page-node-id="fpwEjqEXFiFj2DSg38RvEq">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="cOMfzgF4egHUfvfMKFqhHl"><rect x="2" y="4" width="20" height="16" rx="2" data-page-node-id="AEoj3GXBfzyeTHYSHQxpq9"/><path d="m2 7 10 6 10-6" data-page-node-id="2WvYrf45LPPHyqa2RwbB74"/></svg>
+          miaoermua@gmail.com
+          <span class="tag" data-page-node-id="S7uA1VA7JLuhSeLHFA2JfQ">抄送 i@miaoer.net</span>
+        </a>
+        <a href="https://t.me/miaoer" target="_blank" rel="noopener" data-page-node-id="in5UcAkRy6fIukWURjlMid">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="3mSYwUpmIGPlVJUoEj1ikZ"><line x1="22" y1="2" x2="11" y2="13" data-page-node-id="LXpuCQutp4w2x7LV3bTylg"/><polygon points="22 2 15 22 11 13 2 9 22 2" data-page-node-id="3QCjHNaEJ5hNVOJGIDZWb0"/></svg>
+          t.me/miaoer
+        </a>
+        <a href="https://t.me/miaoer_subscribe" target="_blank" rel="noopener" data-page-node-id="tR6qrCGY1EyIeFi6icwLZr">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="KwEb453wXbdVzIdU2AXgMI"><line x1="22" y1="2" x2="11" y2="13" data-page-node-id="41AOcb72qChebyATKRPMC3"/><polygon points="22 2 15 22 11 13 2 9 22 2" data-page-node-id="SArgpEtqdpXybRHizab8h3"/></svg>
+          t.me/miaoer_subscribe
+          <span class="tag" data-page-node-id="EIxn4KfCV4G8EDjzVCAoGx">频道</span>
+        </a>
+      </div>
     </div>
   </div>
 
-  <script type="text/javascript">
-    
-  let next = document.querySelector('.next')
-  let prev = document.querySelector('.prev')
-  
-  next.addEventListener('click', function(){
-    let items = document.querySelectorAll('.item')
-    document.querySelector('.slide').appendChild(items[0])
-  })
-  
-  prev.addEventListener('click', function(){
-    let items = document.querySelectorAll('.item')
-    document.querySelector('.slide').prepend(items[items.length - 1]) // here the length of items = 6
-  
-  })
+  <div class="slide" data-page-node-id="rrB0CKLMeecKFmc4lZ3nMU">
+    <div class="item" style="background-image: url(/notes/23-10-Nanjing/IMG_20231006_085457.jpg);" data-page-node-id="slP4PtdMmXOB0tc76UMc4Q">
+      <div class="content" data-page-node-id="8UveneKshLlmbG7hnF7QCW">
+        <div class="name" data-page-node-id="araYQJaEZEj7GaB9G434tY">NJUST</div>
+        <div class="des" data-page-node-id="bxF8947eVy825N06IVU9Pr">紫霞湖</div>
+        <a href="https://www.miaoer.net" class="btn-see-more" data-page-node-id="ynUEsg8KFRmqN525pwUsOK">回到博客</a>
+      </div>
+    </div>
 
-  </script>
+    <div class="item" style="background-image: url(/notes/24-02-Wuhan/IMG_20240225_092744.jpg);" data-page-node-id="uEBwPt84rSz5l8qvhBgGz7">
+      <div class="content" data-page-node-id="EyzLyuHrWszLlXCos7dYqL">
+        <div class="name" data-page-node-id="AtHiJQHfmfGLHWezdUWdg2">WHU</div>
+        <div class="des" data-page-node-id="stisJhYNg0Oie5gq9JvMjX">9.12 操场</div>
+        <a href="https://www.miaoer.net" class="btn-see-more" data-page-node-id="DVVn0lNEgLwwowTzrOlCjF">回到博客</a>
+      </div>
+    </div>
+
+    <div class="item" style="background-image: url(/notes/23-10-Nanjing/IMG_20231006_090433.jpg);" data-page-node-id="HivlL0XsHVwsWfTOcpLggK">
+      <div class="content" data-page-node-id="yZLbtcoBDWjsvzlux23jtl">
+        <div class="name" data-page-node-id="pkZao2zFv9nWfArHgGGk3N">NJUST</div>
+        <div class="des" data-page-node-id="ggcSvfsUhCqWUy6GYQBoC9">兵器博物馆</div>
+        <a href="https://www.miaoer.net" class="btn-see-more" data-page-node-id="fWqaPdxZ6XxDckzyDHHhS9">回到博客</a>
+      </div>
+    </div>
+
+    <div class="item" style="background-image: url(/notes/24-02-Wuhan/IMG_20240225_095550.jpg);" data-page-node-id="EYWwoPxVkuO4hvgBmlBcTP">
+      <div class="content" data-page-node-id="2lHmALku8ZUreXmiPUXS6K">
+        <div class="name" data-page-node-id="gWVWRTzq7WWjeIwlqDmfV3">WHU</div>
+        <div class="des" data-page-node-id="5FbwYtaVzt8ASk7rjVhYT3">老斋舍 樱花城堡</div>
+        <a href="https://www.miaoer.net" class="btn-see-more" data-page-node-id="UWpn2GYfjqA8sDTLPI0Zrh">回到博客</a>
+      </div>
+    </div>
+
+    <div class="item" style="background-image: url(/notes/23-10-Nanjing/IMG_20231006_063404.jpg);" data-page-node-id="XP2DtspWO5Jfgyiy4DwqzG">
+      <div class="content" data-page-node-id="vYshfIKoyqxIvFHOnhy39J">
+        <div class="name" data-page-node-id="PLJebDmFD0II3D1oo09k9q">NJUST</div>
+        <div class="des" data-page-node-id="8n4fc3hdLX5qu9tAaqWA5T">求是路 梧桐树</div>
+        <a href="https://www.miaoer.net" class="btn-see-more" data-page-node-id="0FwpmX5ROBF2pLl4LWBVzH">回到博客</a>
+      </div>
+    </div>
+
+    <div class="item" style="background-image: url(/notes/24-02-Wuhan/IMG_20240225_092920.jpg);" data-page-node-id="2SuiZ5Yb7WyIDornCA9Ww5">
+      <div class="content" data-page-node-id="7sgZrqAyckMa6so4TxPE1C">
+        <div class="name" data-page-node-id="xqvC9mp692MzRQjPlPFEMg">WHU</div>
+        <div class="des" data-page-node-id="Wrm74rxDx2gnkIKF7DE9lq">行政楼</div>
+        <a href="https://www.miaoer.net" class="btn-see-more" data-page-node-id="Fh0aFVwjEEB0pH7btFKvdY">回到博客</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav" data-page-node-id="9D0O7h1AI8BEd0drHKEGny">
+    <button class="prev" aria-label="上一张" data-page-node-id="Fl7LVjxRESePVcZCK1OKwl">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="FlG4fxT5MEMFqHhUo5QBjv"><polyline points="15 18 9 12 15 6" data-page-node-id="ZTpqkwE2TeIQxBARkM78KW"/></svg>
+    </button>
+    <button class="next" aria-label="下一张" data-page-node-id="1WXef4WswYP6be7h06wTr3">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" data-page-node-id="dt0BwXRubDhErV6opzJBqa"><polyline points="9 18 15 12 9 6" data-page-node-id="25ahV8edyCLBkHD8hfQJI2"/></svg>
+    </button>
+  </div>
+
+  <div class="credit" data-page-node-id="Ae3rhj6kwLvdInkM1nM8CY">
+    <a href="https://www.miaoer.net" target="_blank" rel="noopener" data-page-node-id="JEmBAQzAAuppjwTsEQH1c1">© 喵二の小博客</a>
+  </div>
+</div>
+
+<script type="text/javascript">
+  // ---------- 轮播 ----------
+  const container = document.querySelector('.container');
+  const slide = document.querySelector('.slide');
+
+  function goNext() { slide.appendChild(slide.firstElementChild); }
+  function goPrev() { slide.prepend(slide.lastElementChild); }
+
+  let timer = setInterval(goNext, 5000);
+  function restartTimer() {
+    clearInterval(timer);
+    timer = setInterval(goNext, 5000);
+  }
+
+  document.querySelector('.next').addEventListener('click', () => { goNext(); restartTimer(); });
+  document.querySelector('.prev').addEventListener('click', () => { goPrev(); restartTimer(); });
+
+  // 键盘方向键
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') { goNext(); restartTimer(); }
+    if (e.key === 'ArrowLeft')  { goPrev(); restartTimer(); }
+  });
+
+  // 鼠标悬停时暂停自动播放
+  container.addEventListener('mouseenter', () => clearInterval(timer));
+  container.addEventListener('mouseleave', restartTimer);
+
+  // ---------- 紧急联系气泡 ----------
+  const contactBtn = document.getElementById('contactBtn');
+  const contactPop = document.getElementById('contactPop');
+
+  contactBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const open = contactPop.classList.toggle('open');
+    contactBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!contactPop.contains(e.target)) {
+      contactPop.classList.remove('open');
+      contactBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      contactPop.classList.remove('open');
+      contactBtn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  // ---------- CDN 加载状态检测 ----------
+  // 对每张图片发起一次带时间戳参数的请求，绕过浏览器缓存，真实反映 CDN 可用性与耗时
+  (function checkCdn() {
+    const items = [...document.querySelectorAll('.item')];
+    const urls = items
+      .map(el => (el.style.backgroundImage.match(/url\(["']?(.*?)["']?\)/) || [])[1])
+      .filter(Boolean);
+
+    const total = urls.length;
+    const dot = document.getElementById('statusDot');
+    const text = document.getElementById('statusText');
+    let ok = 0, fail = 0;
+    const times = [];
+
+    function settle() {
+      if (ok + fail < total) return;
+      if (fail === 0 && ok > 0) {
+        const avg = Math.round(times.reduce((a, b) => a + b, 0) / times.length);
+        dot.className = 'dot ok';
+        text.textContent = ok + '/' + total + ' 张图片加载成功 · 平均 ' + avg + ' ms';
+      } else if (ok > 0) {
+        dot.className = 'dot warn';
+        text.textContent = ok + '/' + total + ' 张加载成功，' + fail + ' 张失败';
+      } else {
+        dot.className = 'dot err';
+        text.textContent = '全部图片加载失败，CDN 异常';
+      }
+    }
+
+    urls.forEach(u => {
+      const t0 = performance.now();
+      const im = new Image();
+      im.onload = () => { ok++; times.push(performance.now() - t0); settle(); };
+      im.onerror = () => { fail++; settle(); };
+      im.src = u + (u.includes('?') ? '&' : '?') + 'cdncheck=' + Date.now();
+    });
+  })();
+</script>
 
 </body>
 </html>
 
-<!--https://www.bilibili.com/read/cv27606637-->
+<!-- 轮播结构参考: https://www.bilibili.com/read/cv27606637 -->
